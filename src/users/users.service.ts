@@ -15,8 +15,8 @@ export class UsersService {
     async  createUsers(firstName: string,lastName:  string, email   :  string,password:  string)
     {
         
-        const esim = await this.findByEmail(email);
-        if(esim)
+        const existingUser = await this.findByEmail(email);
+        if(existingUser)
         {
             throw new Error('Use other email');
         }
@@ -73,7 +73,7 @@ export class UsersService {
               
             })
            await this.friendRepository.save(friend);
-console.log(friend)
+
 
             if (!user1.friends) {
                 user1.friends = [friend];
